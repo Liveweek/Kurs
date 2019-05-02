@@ -28,17 +28,20 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     setup_window.cpp \
-    create_editdish.cpp
+    create_editdish.cpp \
+    stock_window.cpp
 
 HEADERS += \
         mainwindow.h \
     setup_window.h \
-    create_editdish.h
+    create_editdish.h \
+    stock_window.h
 
 FORMS += \
         mainwindow.ui \
     setup_window.ui \
-    create_editdish.ui
+    create_editdish.ui \
+    stock_window.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

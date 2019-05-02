@@ -18,6 +18,8 @@ public:
 private slots:
     void on_setup_button_clicked();
 
+    void on_products_button_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

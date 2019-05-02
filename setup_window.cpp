@@ -18,7 +18,6 @@ setup_window::setup_window(QWidget *parent) :
 
 setup_window::~setup_window()
 {
-    currentRowNumber = -1;
     delete ui;
 };
 
@@ -82,6 +81,9 @@ void setup_window::on_delete_button_clicked()
     QMessageBox::StandardButton reply;
     reply = QMessageBox::question(this,QString::fromUtf8("Вопрос"), QString::fromUtf8("Вы действительно хотите удалить это блюдо из списка?"), QMessageBox::No | QMessageBox::Yes);
     if (reply == QMessageBox::Yes) {
+        for (auto i = list_of_dishes[currentRowNumber].list.begin(); i != list_of_dishes[currentRowNumber].list.end(); i++) {
+            i->set_of_dishes.erase(list_of_dishes[currentRowNumber].name);
+        }
         list_of_dishes.erase(list_of_dishes.begin() + currentRowNumber);
         refresh();
     }

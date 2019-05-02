@@ -17,6 +17,7 @@ Create_editDish::Create_editDish(QWidget *parent) :
     ui(new Ui::Create_editDish)
 {
     ui->setupUi(this);
+    qDebug() << currentRowNumber << endl;
     edit = list_of_dishes[currentRowNumber];
     ui->nameField->setText(list_of_dishes[currentRowNumber].name);
     ui->aboutField->setText(list_of_dishes[currentRowNumber].about);
@@ -48,13 +49,11 @@ void Create_editDish::on_cancel_button_clicked()
     win->show();
 }
 
-//кнопка сохранения -> передача этих данных в вектор и обновление предыдущего окна ====== ВЫЛЕТАЕТ
+//кнопка сохранения -> передача этих данных в вектор и обновление предыдущего окна ====== РАБОТАЕТ
 void Create_editDish::on_save_button_clicked()
 {
     edit.name = ui->nameField->text();
-    qDebug() << "1";
     edit.about = ui->aboutField->toPlainText();
-    qDebug() << "2";
     for (int i = 0; i < edit.list.size(); i++) {
         bool isIn = false;
         for (int j = 0; j < all_ingridients.size(); j++) {
@@ -67,12 +66,9 @@ void Create_editDish::on_save_button_clicked()
         if (!isIn) {
             edit.list[i].set_of_dishes.insert(edit.name);
             all_ingridients.push_back(edit.list[i]);
-            qDebug() << "добавлен ингридиент";
         }
     }
     list_of_dishes[currentRowNumber] = edit;
-    qDebug() << "Сохранено в массив" << endl;
-//    ui->ingridients_list->setCurrentRow(0);
     setup_window* w = new setup_window;
     w->show();
     delete this;
@@ -81,7 +77,8 @@ void Create_editDish::on_save_button_clicked()
 //добавления нового ингридиента в список ====== РАБОТАЕТ
 void Create_editDish::on_add_button_clicked()
 {
-    bool ok;
+    bool ok; //проверка нажатия кнопки ОК
+    bool need_add;//флаг, на основании которого мы будем добавлять новый ингридиент в список или нет
     Ingridient input;
     QString some_ingridient = QInputDialog::getText(this, QString::fromStdString("Введите название ингридиента"), QString::fromStdString("Название: "), QLineEdit::Normal, QDir::home().dirName(), &ok);
     if (ok && !some_ingridient.isEmpty()) {
@@ -90,19 +87,21 @@ void Create_editDish::on_add_button_clicked()
             if (some_ingridient == elem.name) {
                 input = elem;
                 isInAll = true;
+                need_add = true;
             }
         }
         if (!isInAll) {
-            qDebug() << "Не нашёл ничего" << endl;
             ok = false;
             int cost_ingrid = QInputDialog::getInt(this, QString::fromStdString("Введите стоимость блюда"), QString::fromStdString("Стоимость"), 10, 0, 1000, 1, &ok);
             if (ok) {
                 input.cost = cost_ingrid;
                 input.name = some_ingridient;
+                need_add = true;
             }
         }
-        edit.list.push_back(input);
-        qDebug() << "Добавил в список ингридиентов" << endl;
+        if (need_add) {
+            edit.list.push_back(input);
+        }
     }
     refresh();
 }
