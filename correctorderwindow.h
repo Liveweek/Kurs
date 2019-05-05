@@ -2,6 +2,9 @@
 #define CORRECTORDERWINDOW_H
 
 #include <QMainWindow>
+#include <vector>
+#include "makeorderwindow.h"
+
 
 namespace Ui {
 class CorrectOrderWindow;

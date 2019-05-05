@@ -35,6 +35,7 @@ void MakeOrderWindow::result_refresh() {
     ui->basket_button->setText(QString("Корзина(%1)").arg(ord.list.size()));
 }
 
+//событие смены выбранного элемента
 void MakeOrderWindow::on_dishes_currentRowChanged(int currentRow)
 {
     refresh();
