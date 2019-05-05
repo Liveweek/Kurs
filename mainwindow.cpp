@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "setup_window.h"
 #include "stock_window.h"
+#include "makeorderwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -27,6 +28,13 @@ void MainWindow::on_setup_button_clicked()
 void MainWindow::on_products_button_clicked()
 {
     Stock_window *win = new Stock_window;
+    win->show();
+    this->hide();
+}
+
+void MainWindow::on_task_button_clicked()
+{
+    MakeOrderWindow *win = new MakeOrderWindow;
     win->show();
     this->hide();
 }

@@ -83,6 +83,11 @@ void setup_window::on_delete_button_clicked()
     if (reply == QMessageBox::Yes) {
         for (auto i = list_of_dishes[currentRowNumber].list.begin(); i != list_of_dishes[currentRowNumber].list.end(); i++) {
             i->set_of_dishes.erase(list_of_dishes[currentRowNumber].name);
+            for (int k = 0; k < all_ingridients.size(); k++) {
+                if (i->name == all_ingridients[k].name) {
+                    all_ingridients[k].set_of_dishes.erase(list_of_dishes[currentRowNumber].name);
+                }
+            }
         }
         list_of_dishes.erase(list_of_dishes.begin() + currentRowNumber);
         refresh();

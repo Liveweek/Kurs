@@ -23,6 +23,11 @@ public:
     ~Stock_window();
     void refresh();
 
+private slots:
+    void on_backtomenu_button_clicked();
+
+    void on_order_button_clicked();
+
 private:
     Ui::Stock_window *ui;
 };

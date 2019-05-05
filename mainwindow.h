@@ -20,6 +20,8 @@ private slots:
 
     void on_products_button_clicked();
 
+    void on_task_button_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

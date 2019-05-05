@@ -29,19 +29,28 @@ SOURCES += \
         mainwindow.cpp \
     setup_window.cpp \
     create_editdish.cpp \
-    stock_window.cpp
+    stock_window.cpp \
+    dialogorderingrid.cpp \
+    makeorderwindow.cpp \
+    correctorderwindow.cpp
 
 HEADERS += \
         mainwindow.h \
     setup_window.h \
     create_editdish.h \
-    stock_window.h
+    stock_window.h \
+    dialogorderingrid.h \
+    makeorderwindow.h \
+    correctorderwindow.h
 
 FORMS += \
         mainwindow.ui \
     setup_window.ui \
     create_editdish.ui \
-    stock_window.ui
+    stock_window.ui \
+    dialogorderingrid.ui \
+    makeorderwindow.ui \
+    correctorderwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -1,6 +1,7 @@
 #include "create_editdish.h"
 #include "setup_window.h"
 #include "ui_create_editdish.h"
+#include "stock_window.h"
 #include <string>
 #include <QInputDialog>
 #include <QDir>
@@ -17,7 +18,6 @@ Create_editDish::Create_editDish(QWidget *parent) :
     ui(new Ui::Create_editDish)
 {
     ui->setupUi(this);
-    qDebug() << currentRowNumber << endl;
     edit = list_of_dishes[currentRowNumber];
     ui->nameField->setText(list_of_dishes[currentRowNumber].name);
     ui->aboutField->setText(list_of_dishes[currentRowNumber].about);
@@ -66,6 +66,7 @@ void Create_editDish::on_save_button_clicked()
         if (!isIn) {
             edit.list[i].set_of_dishes.insert(edit.name);
             all_ingridients.push_back(edit.list[i]);
+            count_of_ingridients.push_back(0);
         }
     }
     list_of_dishes[currentRowNumber] = edit;
