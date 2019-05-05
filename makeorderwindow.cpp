@@ -41,7 +41,7 @@ void MakeOrderWindow::on_dishes_currentRowChanged(int currentRow)
     refresh();
 }
 
-//Добавление блюда в заказ (" в Корзину ") ====== каким-то чудом не работает
+//Добавление блюда в заказ (" в Корзину ")
 void MakeOrderWindow::on_add_button_clicked()
 {
     ord.list.push_back(list_of_dishes[ui->dishes->currentRow()]);
@@ -54,11 +54,11 @@ void MakeOrderWindow::on_add_button_clicked()
 Order::Order() {
     FIO = "";
     set_result();
-    data = "01/02/2001";
+    data = Date::set_data(1, 1, 2001);
 }
 
 //С параметрами (который будет использоваться повсеместно)
-Order::Order(QString fio, QString data, vector<Dish> l) {
+Order::Order(QString fio, Date data, vector<Dish> l) {
     FIO = fio;
     this->data = data;
     list = l;
@@ -72,4 +72,27 @@ void Order::set_result() {
         summ += this->list[i].count_cost();
     }
     result = summ;
+}
+
+//КОНСТРУКТОРЫ, МЕТОДЫ И СТАТИЧЕСКИЕ ФУНКЦИИ класса DATA
+//Конструктор по умолчанию
+Date::Date() {
+    day = 1;
+    month = 1;
+    year = 2000;
+    format_date = QString("%1%2/%3%4/%5").arg(day / 10, day % 10 , month / 10, month % 10, year);
+}
+
+//Коструктор с параметрами
+Date::Date(int d, int m, int y) {
+    day = d;
+    month = m;
+    year = y;
+    format_date = QString("%1%2/%3%4/%5").arg(day / 10, day % 10, month / 10, month % 10, year);
+}
+
+//Установить дату
+Date Date::set_data(int d, int m, int y) {
+    Date data(d, m, y);
+    return data;
 }
