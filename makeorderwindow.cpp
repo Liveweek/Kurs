@@ -1,5 +1,6 @@
 #include "makeorderwindow.h"
 #include "ui_makeorderwindow.h"
+#include "correctorderwindow.h"
 
 Order ord;
 
@@ -49,12 +50,48 @@ void MakeOrderWindow::on_add_button_clicked()
     result_refresh();
 }
 
+void MakeOrderWindow::on_basket_button_clicked()
+{
+    CorrectOrderWindow *win = new CorrectOrderWindow;
+    win->show();
+    delete this;
+}
+
+//КОНСТРУКТОРЫ, МЕТОДЫ И СТАТИЧЕСКИЕ ФУНКЦИИ класса DATA
+//Конструктор по умолчанию
+Date::Date() {
+    day = 1;
+    month = 1;
+    year = 2000;
+}
+
+//Коструктор с параметрами
+Date::Date(int d, int m, int y) {
+    day = d;
+    month = m;
+    year = y;
+}
+
+QString Date::format_date() {
+    return QString("%1%2/%3%4/%5").arg(day / 10, day % 10, month / 10, month % 10, year);
+}
+
+//Перегрузка оператора присваивания
+Date& Date::operator= (Date &arg) {
+    day = arg.day;
+    month = arg.month;
+    year = arg.year;
+    return *this;
+}
+
+
 //КОНСТРУКТОРЫ и МЕТОДЫ класса ORDER
 //По умочанию
 Order::Order() {
     FIO = "";
     set_result();
-    data = Date::set_data(1, 1, 2001);
+    Date dat(1,1,2001);
+    data = dat;
 }
 
 //С параметрами (который будет использоваться повсеместно)
@@ -74,25 +111,13 @@ void Order::set_result() {
     result = summ;
 }
 
-//КОНСТРУКТОРЫ, МЕТОДЫ И СТАТИЧЕСКИЕ ФУНКЦИИ класса DATA
-//Конструктор по умолчанию
-Date::Date() {
-    day = 1;
-    month = 1;
-    year = 2000;
-    format_date = QString("%1%2/%3%4/%5").arg(day / 10, day % 10 , month / 10, month % 10, year);
+//Перегрузка оператора равенства для заказов
+Order& Order::operator= (Order& arg) {
+    this->FIO = arg.FIO;
+    this->list = arg.list;
+    this->number_of_dishes = arg.number_of_dishes;
+    this->data = arg.data;
+    this->set_result();
+    return *this;
 }
 
-//Коструктор с параметрами
-Date::Date(int d, int m, int y) {
-    day = d;
-    month = m;
-    year = y;
-    format_date = QString("%1%2/%3%4/%5").arg(day / 10, day % 10, month / 10, month % 10, year);
-}
-
-//Установить дату
-Date Date::set_data(int d, int m, int y) {
-    Date data(d, m, y);
-    return data;
-}

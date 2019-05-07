@@ -32,7 +32,8 @@ SOURCES += \
     stock_window.cpp \
     dialogorderingrid.cpp \
     makeorderwindow.cpp \
-    correctorderwindow.cpp
+    correctorderwindow.cpp \
+    dialoghistorywundow.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -41,7 +42,8 @@ HEADERS += \
     stock_window.h \
     dialogorderingrid.h \
     makeorderwindow.h \
-    correctorderwindow.h
+    correctorderwindow.h \
+    dialoghistorywundow.h
 
 FORMS += \
         mainwindow.ui \
@@ -50,7 +52,8 @@ FORMS += \
     stock_window.ui \
     dialogorderingrid.ui \
     makeorderwindow.ui \
-    correctorderwindow.ui
+    correctorderwindow.ui \
+    dialoghistorywundow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
