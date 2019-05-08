@@ -3,12 +3,16 @@
 #include "setup_window.h"
 #include "stock_window.h"
 #include "makeorderwindow.h"
+#include "dialoghistorywindow.h"
+#include "filework.h"
+#include <QDir>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    FileWork::loadFromFiles();
 }
 
 MainWindow::~MainWindow()
@@ -35,6 +39,13 @@ void MainWindow::on_products_button_clicked()
 void MainWindow::on_task_button_clicked()
 {
     MakeOrderWindow *win = new MakeOrderWindow;
+    win->show();
+    this->hide();
+}
+
+void MainWindow::on_history_button_clicked()
+{
+    DialogHistoryWindow *win = new DialogHistoryWindow;
     win->show();
     this->hide();
 }

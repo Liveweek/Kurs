@@ -73,7 +73,7 @@ Date::Date(int d, int m, int y) {
 }
 
 QString Date::format_date() {
-    return QString("%1%2/%3%4/%5").arg(day / 10, day % 10, month / 10, month % 10, year);
+    return QString("%1%2/%3%4/%5 ").arg(day / 10).arg(day % 10).arg(month / 10).arg(month % 10).arg(year);
 }
 
 //Перегрузка оператора присваивания
@@ -84,6 +84,20 @@ Date& Date::operator= (Date &arg) {
     return *this;
 }
 
+//Получить день
+int Date::get_day() {
+    return this->day;
+}
+
+//Получить месяц
+int Date::get_month() {
+    return this->month;
+}
+
+//Получить год
+int Date::get_year() {
+    return this->year;
+}
 
 //КОНСТРУКТОРЫ и МЕТОДЫ класса ORDER
 //По умочанию

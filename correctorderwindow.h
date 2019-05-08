@@ -39,9 +39,13 @@ private:
     int year;
 public:
     QString format_date();
+    int get_day();
+    int get_month();
+    int get_year();
     Date();
     Date(int d, int m, int y);
     Date& operator= (Date& arg);
+    static int isCorrect(Date arg1, Date arg2);
 };
 
 //Класс заказа
@@ -61,6 +65,7 @@ public:
 
 extern Order ord;
 extern vector<Order> history;
+extern vector<Order> request;
 
 
 #endif // CORRECTORDERWINDOW_H
